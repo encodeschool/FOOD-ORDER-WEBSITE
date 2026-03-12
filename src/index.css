@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: foodFont; /* set name */
+  src: url(assets/fonts/food-font-menu/FoodMenuDemoRegular-BLrM8.otf); /* url of the font */
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -9,4 +14,8 @@ html {
 
 body{
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+h1.foodFont {
+  font-family: foodFont;
 }

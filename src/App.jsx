@@ -28,10 +28,9 @@ function App() {
       <About />
       <Menu addToCart={addToCart} />
       <BurgerAnimation />
-      <Gallery />
+      {/* <Gallery /> */}
       <Booking />
       <News />
-      <Contact />
       <Footer />
     </div>
   );

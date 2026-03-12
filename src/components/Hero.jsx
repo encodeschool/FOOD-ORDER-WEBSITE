@@ -23,9 +23,9 @@ export default function Hero() {
           initial={{opacity:0,y:50}}
           animate={{opacity:1,y:0}}
           transition={{duration:0.5}}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-gray-900"
+          className="text-4xl foodFont sm:text-5xl lg:text-8xl mb-6 text-gray-900"
         >
-          The Perfect Burger
+          The Champions Food
         </motion.h1>
 
         <motion.p
