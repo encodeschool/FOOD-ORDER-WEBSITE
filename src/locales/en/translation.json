@@ -1,0 +1,16 @@
+{
+  "about_title": "About Our Cafe",
+  "about_text": "We craft premium burgers using fresh organic ingredients, perfectly grilled patties and house made sauces.",
+  "menu": "Menu",
+  "gallery": "Gallery",
+  "booking": "Booking",
+  "contact": "Contact",
+  "nav": {
+    "about": "About",
+    "menu": "Menu",
+    "gallery": "Gallery",
+    "booking": "Booking",
+    "news": "News",
+    "contact": "Contact"
+  }
+}

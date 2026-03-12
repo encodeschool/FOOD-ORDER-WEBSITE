@@ -1,0 +1,16 @@
+{
+  "about_title": "Par mūsu kafejnīcu",
+  "about_text": "Mēs gatavojam augstākās kvalitātes burgerus no svaigām bioloģiskām sastāvdaļām, perfekti grilētām kotletēm un mājās gatavotām mērcēm.",
+  "menu": "Ēdienkarte",
+  "gallery": "Galerija",
+  "booking": "Rezervācija",
+  "contact": "Kontakti",
+  "nav": {
+    "about": "Par mums",
+    "menu": "Ēdienkarte",
+    "gallery": "Galerija",
+    "booking": "Rezervācija",
+    "news": "Jaunumi",
+    "contact": "Kontakti"
+  }
+}
