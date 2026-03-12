@@ -36,11 +36,13 @@ export default function Menu({ addToCart }) {
               className="w-32 h-32 object-contain mb-4"
             />
             <h3 className="text-xl font-bold mb-2">{burger.name}</h3>
-            <p className="text-orange-500 text-lg font-semibold">${burger.price}</p>
+            <p className="text-orange-500 text-lg font-semibold">
+              ${burger.price}
+            </p>
 
             <button
-              className="mt-4 px-6 py-2 border border-orange-500 text-orange-500 rounded-full hover:bg-orange-100 transition"
               onClick={() => addToCart(burger)}
+              className="mt-4 px-6 py-2 border border-orange-500 text-orange-500 rounded-full hover:bg-orange-100 transition"
             >
               Add to Cart
             </button>
