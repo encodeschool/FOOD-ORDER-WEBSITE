@@ -52,10 +52,10 @@ function App() {
       <Menu addToCart={addToCart} />
 
       <BurgerAnimation />
-      <Gallery />
+      {/* <Gallery /> */}
       <Booking />
-      <News />
-      <Contact />
+      {/* <News /> */}
+      {/* <Contact /> */}
       <Footer />
 
     </div>

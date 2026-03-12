@@ -207,7 +207,7 @@ export default function Navbar({ cart, setCart }) {
               </button>
 
               {cartOpen && (
-                <div className="absolute right-0 mt-4 w-80 bg-white border rounded-xl shadow-lg p-4">
+                <div className="absolute right-0 mt-4 md:w-80 lg:w-80 sm:w-80 bg-white border rounded-xl shadow-lg p-4">
                   <h3 className="font-semibold mb-3">Cart</h3>
                   {groupedCart.length === 0 ? (
                     <p className="text-sm text-gray-500">Your cart is empty</p>

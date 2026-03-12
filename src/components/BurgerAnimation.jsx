@@ -81,7 +81,7 @@ export default function BurgerAnimation() {
 
   return (
 <section ref={sectionRef} className="burger-section py-40 flex items-center overflow-hidden">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center px-6">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:gap-20 sm:gap-0 items-center px-6">
 
         {/* TEXT LEFT */}
 
