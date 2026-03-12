@@ -4,7 +4,6 @@ import { Menu, X, ChevronDown, ShoppingCart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export default function Navbar({ cart, setCart, removeFromCart }) {
-
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
@@ -14,7 +13,7 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
   const [userInfo, setUserInfo] = useState({
     name: "",
     phone: "",
-    email: ""
+    email: "",
   });
 
   const { t, i18n } = useTranslation();
@@ -25,14 +24,71 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
     { id: "gallery", label: t("nav.gallery") },
     { id: "booking", label: t("nav.booking") },
     { id: "news", label: t("nav.news") },
-    { id: "contact", label: t("nav.contact") }
+    { id: "contact", label: t("nav.contact") },
   ];
 
   const languages = [
-    { code: "en", label: "EN" },
-    { code: "ru", label: "RU" },
-    { code: "lv", label: "LV" }
+    {
+      code: "en",
+      label: "EN",
+      flag: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 60 30"
+          className="w-5 h-5"
+        >
+          <clipPath id="t">
+            <path d="M0 0h60v30H0z" />
+          </clipPath>
+          <g clipPath="url(#t)">
+            <path fill="#012169" d="M0 0h60v30H0z" />
+            <path
+              fill="#FFF"
+              d="M0 0l60 30M60 0L0 30M30 0v30M0 15h60"
+              strokeWidth="6"
+            />
+            <path
+              fill="#C8102E"
+              d="M0 0l60 30M60 0L0 30M30 0v30M0 15h60"
+              strokeWidth="4"
+            />
+          </g>
+        </svg>
+      ),
+    },
+    {
+      code: "ru",
+      label: "RU",
+      flag: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 60 30"
+          className="w-5 h-5"
+        >
+          <path fill="#fff" d="M0 0h60v10H0z" />
+          <path fill="#0039A6" d="M0 10h60v10H0z" />
+          <path fill="#D52B1E" d="M0 20h60v10H0z" />
+        </svg>
+      ),
+    },
+    {
+      code: "lv",
+      label: "LV",
+      flag: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 60 30"
+          className="w-5 h-5"
+        >
+          <path fill="#8D1B3D" d="M0 0h60v10H0z" />
+          <path fill="#fff" d="M0 10h60v10H0z" />
+          <path fill="#8D1B3D" d="M0 20h60v10H0z" />
+        </svg>
+      ),
+    },
   ];
+
+  const currentLang = i18n.language.slice(0, 2);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -44,27 +100,25 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-
   }, []);
 
   const handleCheckout = () => {
-
     console.log("Order:", {
       customer: userInfo,
-      items: cart
+      items: cart,
     });
 
     alert("Order placed successfully!");
 
     setCart([]);
+    localStorage.removeItem("burger-cart");
     setCheckoutOpen(false);
 
     setUserInfo({
       name: "",
       phone: "",
-      email: ""
+      email: "",
     });
-
   };
 
   return (
@@ -72,22 +126,15 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
       {/* NAVBAR */}
       <nav
         className={`fixed w-full top-0 z-50 transition-colors duration-300 ${
-          scrolled
-            ? "bg-white/80 backdrop-blur-md border-b"
-            : "bg-transparent"
+          scrolled ? "bg-white/80 backdrop-blur-md border-b" : "bg-transparent"
         }`}
       >
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center h-16">
-
           {/* LOGO */}
-          <h1 className="text-xl sm:text-2xl font-bold">
-            BurgerLab
-          </h1>
+          <h1 className="text-xl sm:text-2xl font-bold">BurgerLab</h1>
 
           {/* DESKTOP NAVIGATION */}
           <div className="hidden md:flex items-center gap-8">
-
             {navItems.map((item) => (
               <Link
                 key={item.id}
@@ -103,41 +150,35 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
 
             {/* LANGUAGE DROPDOWN */}
             <div className="relative">
-
               <button
                 onClick={() => setLangOpen(!langOpen)}
                 className="flex items-center gap-1 px-3 py-1 rounded"
               >
-                {i18n.language.toUpperCase()}
+                {languages.find((l) => l.code === currentLang)?.flag}
+                <span>{currentLang.toUpperCase()}</span>
                 <ChevronDown size={16} />
               </button>
 
               {langOpen && (
                 <div className="absolute right-0 mt-2 bg-white border rounded shadow">
-
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => changeLanguage(lang.code)}
-                      className="block w-full px-4 py-2 hover:bg-gray-100 text-left"
+                      className="w-full flex gap-1 items-center justify-content-center px-4 py-2 hover:bg-gray-100 text-left"
                     >
-                      {lang.label}
+                      {lang.flag} {lang.label}
                     </button>
                   ))}
-
                 </div>
               )}
-
             </div>
-
           </div>
 
           {/* RIGHT SIDE (CART + MOBILE MENU) */}
           <div className="flex items-center gap-4">
-
             {/* CART */}
             <div className="relative">
-
               <button
                 onClick={() => setCartOpen(!cartOpen)}
                 className="relative hover:text-orange-500 transition"
@@ -154,27 +195,19 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
               {/* CART DROPDOWN */}
               {cartOpen && (
                 <div className="absolute right-0 mt-4 w-80 bg-white border rounded-xl shadow-lg p-4">
-
-                  <h3 className="font-semibold mb-3">
-                    Cart
-                  </h3>
+                  <h3 className="font-semibold mb-3">Cart</h3>
 
                   {cart.length === 0 ? (
-                    <p className="text-sm text-gray-500">
-                      Your cart is empty
-                    </p>
+                    <p className="text-sm text-gray-500">Your cart is empty</p>
                   ) : (
                     <>
                       <div className="space-y-3 max-h-56 overflow-y-auto">
-
                         {cart.map((item, i) => (
                           <div
                             key={i}
                             className="flex items-center justify-between"
                           >
-
                             <div className="flex items-center gap-3">
-
                               <img
                                 src={item.img}
                                 alt={item.name}
@@ -190,7 +223,6 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
                                   ${item.price}
                                 </p>
                               </div>
-
                             </div>
 
                             <button
@@ -199,21 +231,15 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
                             >
                               ✕
                             </button>
-
                           </div>
                         ))}
-
                       </div>
 
                       {/* TOTAL */}
                       <div className="flex justify-between font-semibold mt-4 mb-4">
                         <span>Total</span>
                         <span>
-                          $
-                          {cart.reduce(
-                            (sum, item) => sum + item.price,
-                            0
-                          )}
+                          ${cart.reduce((sum, item) => sum + item.price, 0)}
                         </span>
                       </div>
 
@@ -229,22 +255,15 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
                       </button>
                     </>
                   )}
-
                 </div>
               )}
-
             </div>
 
             {/* MOBILE MENU BUTTON */}
-            <button
-              className="md:hidden"
-              onClick={() => setOpen(!open)}
-            >
+            <button className="md:hidden" onClick={() => setOpen(!open)}>
               {open ? <X size={28} /> : <Menu size={28} />}
             </button>
-
           </div>
-
         </div>
 
         {/* MOBILE MENU */}
@@ -253,7 +272,6 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
             open ? "max-h-[500px]" : "max-h-0"
           }`}
         >
-
           {navItems.map((item) => (
             <Link
               key={item.id}
@@ -270,33 +288,26 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
 
           {/* MOBILE LANG */}
           <div className="flex gap-4 px-6 py-4">
-
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => changeLanguage(lang.code)}
-                className={`px-3 py-1 border rounded ${
-                  i18n.language === lang.code
-                    ? "bg-black text-white"
-                    : ""
+                className={`px-3 py-1 border rounded flex items-center gap-1 ${
+                  currentLang === lang.code ? "bg-black text-white" : ""
                 }`}
               >
-                {lang.label}
+                {lang.flag}
+                <span>{lang.label}</span>
               </button>
             ))}
-
           </div>
-
         </div>
-
       </nav>
 
       {/* CHECKOUT MODAL */}
       {checkoutOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-
           <div className="bg-white p-8 rounded-xl w-[400px] relative">
-
             <button
               onClick={() => setCheckoutOpen(false)}
               className="absolute top-4 right-4 text-gray-500"
@@ -304,9 +315,7 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
               <X size={22} />
             </button>
 
-            <h2 className="text-2xl font-bold mb-6">
-              Checkout
-            </h2>
+            <h2 className="text-2xl font-bold mb-6">Checkout</h2>
 
             <input
               type="text"
@@ -316,7 +325,7 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
               onChange={(e) =>
                 setUserInfo({
                   ...userInfo,
-                  name: e.target.value
+                  name: e.target.value,
                 })
               }
             />
@@ -329,7 +338,7 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
               onChange={(e) =>
                 setUserInfo({
                   ...userInfo,
-                  phone: e.target.value
+                  phone: e.target.value,
                 })
               }
             />
@@ -342,7 +351,7 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
               onChange={(e) =>
                 setUserInfo({
                   ...userInfo,
-                  email: e.target.value
+                  email: e.target.value,
                 })
               }
             />
@@ -353,9 +362,7 @@ export default function Navbar({ cart, setCart, removeFromCart }) {
             >
               Place Order
             </button>
-
           </div>
-
         </div>
       )}
     </>
