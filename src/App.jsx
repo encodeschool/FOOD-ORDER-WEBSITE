@@ -9,6 +9,7 @@ import Booking from "./components/Booking"
 import News from "./components/News"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
+import BurgerHero from "./components/BurgerHero"
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
       />
 
       <Hero />
+      <BurgerHero />
       <About />
 
       <Menu addToCart={addToCart} />
