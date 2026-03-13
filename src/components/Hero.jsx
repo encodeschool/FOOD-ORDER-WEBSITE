@@ -89,9 +89,23 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-orange-100 text-orange-500 border-2 border-orange-500 rounded-full px-8 py-3 font-semibold hover:bg-orange-200 hover:scale-105 transition-all duration-300"
+            className="group inline-flex items-center gap-3 bg-orange-100 text-orange-500 border-2 border-orange-500 rounded-full px-8 py-3 font-semibold hover:bg-orange-200 transition-all duration-300"
           >
             Explore Menu
+
+            <svg
+              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 12h14M13 5l7 7-7 7"
+              />
+            </svg>
           </motion.a>
         </motion.div>
       </section>

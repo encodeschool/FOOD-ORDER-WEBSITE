@@ -86,7 +86,7 @@ export default function BurgerAnimation() {
         {/* TEXT LEFT */}
 
         <div className="burger-text">
-          <h2 className="text-6xl font-bold mb-6">
+          <h2 className="text-6xl foodFont font-bold mb-6">
             Build the Perfect Burger
           </h2>
 

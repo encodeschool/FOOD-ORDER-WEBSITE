@@ -1,8 +1,9 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
 
 export default function BurgerHero() {
   const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -15,43 +16,59 @@ export default function BurgerHero() {
   const rotateLeft = useTransform(scrollYProgress, [0, 1], [0, 90]);
   const rotateRight = useTransform(scrollYProgress, [0, 1], [90, 0]);
 
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.25
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 40 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
       className="relative bg-[#f9f4e7] py-32 overflow-hidden"
     >
-
       {/* TOP WAVE */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
-        <svg
-          viewBox="0 0 1440 120"
-          className="w-full h-[120px]"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,80 C360,0 1080,160 1440,80 L1440,0 L0,0 Z"
-            className="fill-white"
-          />
+        <svg viewBox="0 0 1440 120" className="w-full h-[120px]" preserveAspectRatio="none">
+          <path d="M0,80 C360,0 1080,160 1440,80 L1440,0 L0,0 Z" className="fill-white" />
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 space-y-32 relative z-10">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate={isInView ? "show" : "hidden"}
+        className="max-w-7xl mx-auto px-6 space-y-32 relative z-10"
+      >
 
         {/* SECTION 1 */}
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
+
+          <motion.div variants={item}>
             <img
               src="https://lovebakerstreet.com/app/themes/bakerstreet-theme/assets/gfx/product-cat/burger-buns/all-year-round.svg"
               className="mb-8 max-w-[280px]"
             />
             <p className="text-lg text-black">
               Burgers can be eaten any time of the year, for weekends and
-              weekdays so you’ve got to make sure to always have some burger
-              buns on hand.
+              weekdays so you’ve got to make sure to always have some burger buns on hand.
             </p>
-          </div>
+          </motion.div>
 
           <motion.div
+            variants={item}
             style={{ x: moveLeft, rotate: rotateLeft }}
             className="relative"
           >
@@ -64,13 +81,16 @@ export default function BurgerHero() {
               className="relative w-full"
             />
           </motion.div>
+
         </div>
 
         {/* SECTION 2 */}
         <div className="grid md:grid-cols-2 gap-16 items-center">
+
           <motion.div
+            variants={item}
             style={{ x: moveRight, rotate: rotateRight }}
-            className="relative"
+            className="relative order-2 md:order-1"
           >
             <img
               src="https://lovebakerstreet.com/app/themes/bakerstreet-theme/assets/gfx/product-cat/background-02.png"
@@ -82,21 +102,23 @@ export default function BurgerHero() {
             />
           </motion.div>
 
-          <div>
-            <h2 className="text-4xl text-black font-bold mb-6">
+          <motion.div variants={item} className="order-1 md:order-2">
+            <h2 className="text-4xl foodFont text-black font-bold mb-6">
               All About That Base
             </h2>
             <p className="text-lg text-black">
               We’ve created our range of burger buns to offer something for
               everyone. They’re cleverly packed to last longer.
             </p>
-          </div>
+          </motion.div>
+
         </div>
 
         {/* SECTION 3 */}
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-4xl text-black font-bold mb-6">
+
+          <motion.div variants={item}>
+            <h2 className="foodFont text-4xl text-black font-bold mb-6">
               We’re On A Roll!
             </h2>
             <p className="text-lg text-black">
@@ -104,9 +126,10 @@ export default function BurgerHero() {
               creating a quick dinner or coming up with something new,
               Baker Street’s burger buns are there for you!
             </p>
-          </div>
+          </motion.div>
 
           <motion.div
+            variants={item}
             style={{ x: moveLeft, rotate: rotateLeft }}
             className="relative"
           >
@@ -119,22 +142,15 @@ export default function BurgerHero() {
               className="relative w-full"
             />
           </motion.div>
+
         </div>
 
-      </div>
+      </motion.div>
 
       {/* BOTTOM WAVE */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-        <svg
-          className="relative block w-full h-[80px]"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,0 C480,120 960,0 1440,100 L1440,120 L0,120 Z"
-            className="fill-white"
-          />
+        <svg className="relative block w-full h-[80px]" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,0 C480,120 960,0 1440,100 L1440,120 L0,120 Z" className="fill-white" />
         </svg>
       </div>
 

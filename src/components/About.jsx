@@ -10,8 +10,15 @@ export default function About(){
 
     <section
       id="about"
-      className="py-16 sm:py-24 lg:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 lg:gap-16 items-center"
+      className="py-16 bg-[#f9f4e7] relative sm:py-24 lg:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 lg:gap-16 items-center"
     >
+
+      {/* TOP WAVE */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
+        <svg viewBox="0 0 1440 120" className="w-full h-[120px]" preserveAspectRatio="none">
+          <path d="M0,80 C360,0 1080,160 1440,80 L1440,0 L0,0 Z" className="fill-white" />
+        </svg>
+      </div>
 
       <motion.img
         src={TruckIm}
@@ -31,7 +38,7 @@ export default function About(){
         className="text-center md:text-left"
       >
 
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+        <h2 className="text-3xl foodFont sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
 
           {t("about_title")}
 
@@ -50,6 +57,13 @@ export default function About(){
         </button>
 
       </motion.div>
+
+      {/* BOTTOM WAVE */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg className="relative block w-full h-[80px]" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path d="M0,0 C480,120 960,0 1440,100 L1440,120 L0,120 Z" className="fill-white" />
+        </svg>
+      </div>
 
     </section>
   )

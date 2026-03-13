@@ -5,11 +5,11 @@ import About from "./components/About"
 import Menu from "./components/Menu"
 import BurgerAnimation from "./components/BurgerAnimation"
 import Gallery from "./components/Gallery"
-import Booking from "./components/Booking"
 import News from "./components/News"
-import Contact from "./components/Contact"
+import Contacts from "./components/Contacts"
 import Footer from "./components/Footer"
 import BurgerHero from "./components/BurgerHero"
+import LinksSection from './components/LinksSection'
 
 function App() {
 
@@ -49,15 +49,15 @@ function App() {
 
       <Hero />
       <BurgerHero />
+      <LinksSection />
       <About />
 
       <Menu addToCart={addToCart} />
 
       <BurgerAnimation />
       {/* <Gallery /> */}
-      <Booking />
+      <Contacts />
       {/* <News /> */}
-      {/* <Contact /> */}
       <Footer />
 
     </div>
