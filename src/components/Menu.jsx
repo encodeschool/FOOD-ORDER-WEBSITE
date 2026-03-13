@@ -42,7 +42,7 @@ export default function Menu({ addToCart }) {
 
             <button
               onClick={() => addToCart(burger)}
-              className="mt-4 px-6 py-2 border border-orange-500 text-orange-500 rounded-full hover:bg-orange-100 transition"
+              className="mt-4 text-sm px-6 py-2 border border-orange-500 text-orange-500 rounded-full hover:bg-orange-100 transition"
             >
               Add to Cart
             </button>

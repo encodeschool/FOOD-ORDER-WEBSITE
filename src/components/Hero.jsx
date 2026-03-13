@@ -53,7 +53,7 @@ export default function Hero() {
       <motion.img
         src={LeftGlove}
         alt="Left Glove"
-        className="hidden sm:block absolute left-0 top-1/2 w-[550px]"
+        className="hidden sm:block absolute left-0 top-1/2 w-[400px]"
         style={{ y: "-50%" }}
         animate={leftControls}
       />
@@ -62,7 +62,7 @@ export default function Hero() {
       <motion.img
         src={RightGlove}
         alt="Right Glove"
-        className="hidden sm:block absolute right-0 top-1/2 w-[550px]"
+        className="hidden sm:block absolute right-0 top-1/2 w-[400px]"
         style={{ y: "-50%" }}
         animate={rightControls}
       />
@@ -76,7 +76,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl foodFont sm:text-5xl lg:text-8xl mb-6 text-gray-900"
+          className="text-4xl foodFont sm:text-5xl lg:text-7xl mb-6 text-gray-900"
         >
           The Champions Food
         </motion.h1>
