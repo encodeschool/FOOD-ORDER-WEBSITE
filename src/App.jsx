@@ -10,10 +10,32 @@ import Contacts from "./components/Contacts"
 import Footer from "./components/Footer"
 import BurgerHero from "./components/BurgerHero"
 import LinksSection from './components/LinksSection'
+import Loader from './components/Loader'
 
 function App() {
 
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const handleLoad = () => setLoading(false);
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad);
+    }
+
+    // fallback safety
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => {
+      window.removeEventListener("load", handleLoad);
+      clearTimeout(timer);
+    };
+  }, []);
 
   // Load cart from localStorage
   useEffect(() => {
@@ -29,7 +51,6 @@ function App() {
     localStorage.setItem("burger-cart", JSON.stringify(cart))
   }, [cart])
 
-
   const addToCart = (item) => {
     setCart((prev) => [...prev, item])
   }
@@ -39,28 +60,30 @@ function App() {
   }
 
   return (
-    <div className="bg-white text-black">
+    <>
+      {loading && <Loader />}
 
-      <Navbar
-        cart={cart}
-        setCart={setCart}
-        removeFromCart={removeFromCart}
-      />
+      {!loading && (
+        <div className="bg-white text-black">
+          <Navbar
+            cart={cart}
+            setCart={setCart}
+            removeFromCart={removeFromCart}
+          />
 
-      <Hero />
-      <BurgerHero />
-      <LinksSection />
-      <About />
-
-      <Menu addToCart={addToCart} />
-
-      <BurgerAnimation />
-      {/* <Gallery /> */}
-      <Contacts />
-      {/* <News /> */}
-      <Footer />
-
-    </div>
+          <Hero />
+          <BurgerHero />
+          <LinksSection />
+          <About />
+          <Menu addToCart={addToCart} />
+          <BurgerAnimation />
+          {/* <Gallery /> */}
+          <Contacts />
+          {/* <News /> */}
+          <Footer />
+        </div>
+      )}
+    </>
   )
 }
 
